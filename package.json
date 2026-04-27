@@ -1,6 +1,6 @@
 {
   "name": "pixeledge-cn",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CLI to download utility files (utils, contexts, services) from the pixeledge source repo into your project — like shadcn/ui but for pixeledge utilities.",
   "keywords": [
     "cli",
