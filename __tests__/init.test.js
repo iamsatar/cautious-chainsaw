@@ -39,7 +39,7 @@ describe('init command', () => {
     const configPath = path.join(tmpDir, 'pixeledge.config.json');
     expect(fs.existsSync(configPath)).toBe(true);
     const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-    expect(config.baseDir).toBe('src');
+    expect(config.baseDir).toBe('.');
     expect(config.sourceRepo.owner).toBe('sunergix');
     expect(config.sourceRepo.name).toBe('hsi');
     expect(config.sourceRepo.branch).toBe('develop');

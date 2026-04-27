@@ -34,7 +34,7 @@ npx pixeledge-cn init
 
 ```json
 {
-  "baseDir": "src",
+  "baseDir": ".",
   "sourceRepo": {
     "owner": "sunergix",
     "name": "hsi",
@@ -111,8 +111,8 @@ npx pixeledge-cn add utils/BeeApi --output lib/api
 ## Development
 
 ```bash
-git clone https://github.com/iamsatar/cautious-chainsaw.git
-cd cautious-chainsaw
+git clone https://github.com/iamsatar/pixeledge-cn.git
+cd pixeledge-cn
 npm install
 npm test
 ```

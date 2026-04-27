@@ -59,9 +59,9 @@ const REGISTRY = {
   'components/AuthRoutes': {
     name: 'AuthRoutes',
     description:
-      'Route guard logic — protects private routes with fallback behaviour and redirects unauthenticated users to /login.',
+      'Auth-route logic sourced from the upstream App component. Contains route guard logic that protects private routes with fallback behaviour and redirects unauthenticated users to /login.',
     sourcePath: 'src/components/App/App.js',
-    targetPath: 'src/components/AuthRoutes/AuthRoutes.js',
+    targetPath: 'src/components/App/App.js',
     dependencies: ['react', 'react-router-dom'],
   },
 };

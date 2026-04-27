@@ -39,4 +39,10 @@ describe('Registry', () => {
     expect(REGISTRY['components/RedirectIfAuthenticated'].dependencies).toContain('react');
     expect(REGISTRY['components/RedirectIfAuthenticated'].dependencies).toContain('react-router-dom');
   });
+
+  test('AuthRoutes sourcePath and targetPath are aligned', () => {
+    const entry = REGISTRY['components/AuthRoutes'];
+    expect(entry.sourcePath).toBe('src/components/App/App.js');
+    expect(entry.targetPath).toBe('src/components/App/App.js');
+  });
 });

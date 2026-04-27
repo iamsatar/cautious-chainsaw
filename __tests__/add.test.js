@@ -71,6 +71,49 @@ describe('add command', () => {
     expect(fs.existsSync(expected)).toBe(true);
   });
 
+  test('passes sourceRepo from pixeledge.config.json to fetchFileContent', async () => {
+    const sourceRepo = { owner: 'myorg', name: 'myrepo', branch: 'main' };
+    fs.writeFileSync(
+      path.join(tmpDir, 'pixeledge.config.json'),
+      JSON.stringify({ baseDir: '.', sourceRepo }),
+      'utf8'
+    );
+    await addCommand('utils/CancelablePromise', { yes: true });
+    expect(fetchFileContent).toHaveBeenCalledWith(
+      'src/utils/CancelablePromise.js',
+      sourceRepo
+    );
+  });
+
+  test('exits when file already exists and --yes is not set', async () => {
+    // Pre-create the file to simulate an existing file
+    const dest = path.join(tmpDir, 'src/utils/CancelablePromise.js');
+    fs.mkdirSync(path.dirname(dest), { recursive: true });
+    fs.writeFileSync(dest, '// existing\n', 'utf8');
+
+    const mockExit = jest.spyOn(process, 'exit').mockImplementation(() => {
+      throw new Error('process.exit called');
+    });
+    const mockConsoleError = jest.spyOn(console, 'error').mockImplementation(() => {});
+    await expect(addCommand('utils/CancelablePromise', { yes: false })).rejects.toThrow(
+      'process.exit called'
+    );
+    expect(mockExit).toHaveBeenCalledWith(1);
+    // File should remain unchanged
+    expect(fs.readFileSync(dest, 'utf8')).toBe('// existing\n');
+    mockExit.mockRestore();
+    mockConsoleError.mockRestore();
+  });
+
+  test('overwrites file when --yes is set', async () => {
+    const dest = path.join(tmpDir, 'src/utils/CancelablePromise.js');
+    fs.mkdirSync(path.dirname(dest), { recursive: true });
+    fs.writeFileSync(dest, '// existing\n', 'utf8');
+
+    await addCommand('utils/CancelablePromise', { yes: true });
+    expect(fs.readFileSync(dest, 'utf8')).toBe('// mocked file content\n');
+  });
+
   test('exits with error for unknown component', async () => {
     const mockExit = jest.spyOn(process, 'exit').mockImplementation(() => {
       throw new Error('process.exit called');

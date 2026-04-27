@@ -11,13 +11,13 @@
     "axios",
     "cancelable-promise"
   ],
-  "homepage": "https://github.com/iamsatar/cautious-chainsaw#readme",
+  "homepage": "https://github.com/iamsatar/pixeledge-cn#readme",
   "bugs": {
-    "url": "https://github.com/iamsatar/cautious-chainsaw/issues"
+    "url": "https://github.com/iamsatar/pixeledge-cn/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iamsatar/cautious-chainsaw.git"
+    "url": "git+https://github.com/iamsatar/pixeledge-cn.git"
   },
   "license": "MIT",
   "type": "commonjs",
@@ -40,6 +40,6 @@
     "nock": "^13.5.4"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=16.0.0"
   }
 }

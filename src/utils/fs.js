@@ -4,6 +4,22 @@ const fs = require('fs');
 const path = require('path');
 
 /**
+ * Reads and parses `pixeledge.config.json` from the current working directory.
+ * Returns `null` if the file does not exist or is malformed.
+ *
+ * @returns {{ baseDir?: string, sourceRepo?: { owner?: string, name?: string, branch?: string } } | null}
+ */
+function readConfig() {
+  const configFile = path.join(process.cwd(), 'pixeledge.config.json');
+  if (!fs.existsSync(configFile)) return null;
+  try {
+    return JSON.parse(fs.readFileSync(configFile, 'utf8'));
+  } catch (_) {
+    return null;
+  }
+}
+
+/**
  * Resolves the effective output path for a downloaded component.
  *
  * Priority:
@@ -23,17 +39,9 @@ function resolveOutputPath(targetPath, outputFlag) {
     return resolved;
   }
 
-  // Try to read pixeledge.config.json from cwd
-  const configFile = path.join(process.cwd(), 'pixeledge.config.json');
-  if (fs.existsSync(configFile)) {
-    try {
-      const config = JSON.parse(fs.readFileSync(configFile, 'utf8'));
-      if (config.baseDir) {
-        return path.join(process.cwd(), config.baseDir, targetPath);
-      }
-    } catch (_) {
-      // malformed config – fall through to default
-    }
+  const config = readConfig();
+  if (config && config.baseDir) {
+    return path.join(process.cwd(), config.baseDir, targetPath);
   }
 
   return path.join(process.cwd(), targetPath);
@@ -59,4 +67,4 @@ function writeFile(filePath, content) {
   fs.writeFileSync(filePath, content, 'utf8');
 }
 
-module.exports = { resolveOutputPath, ensureDir, writeFile };
+module.exports = { readConfig, resolveOutputPath, ensureDir, writeFile };

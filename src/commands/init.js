@@ -7,7 +7,7 @@ const chalk = require('chalk');
 const CONFIG_FILE = 'pixeledge.config.json';
 
 const DEFAULT_CONFIG = {
-  baseDir: 'src',
+  baseDir: '.',
   sourceRepo: {
     owner: 'sunergix',
     name: 'hsi',
