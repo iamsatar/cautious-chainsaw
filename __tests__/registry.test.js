@@ -10,6 +10,7 @@ describe('Registry', () => {
     expect(keys).toContain('utils/DeApi');
     expect(keys).toContain('components/RedirectIfAuthenticated');
     expect(keys).toContain('components/AuthRoutes');
+    expect(keys).toContain('contexts/UserProvider');
   });
 
   test('each entry has required fields', () => {

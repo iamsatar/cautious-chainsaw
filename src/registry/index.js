@@ -44,6 +44,16 @@ const REGISTRY = {
     dependencies: ['axios'],
   },
 
+  // ─── Contexts ───────────────────────────────────────────────────────────────
+  'contexts/UserProvider': {
+    name: 'UserProvider',
+    description:
+      'React context provider for user authentication state. Persists user data and auth token to localStorage. Exposes login and logout helpers and a useUser hook for consuming the context anywhere in the tree.',
+    sourcePath: 'src/contexts/UserProvider.js',
+    targetPath: 'src/contexts/UserProvider.js',
+    dependencies: ['react'],
+  },
+
   // ─── Components ─────────────────────────────────────────────────────────────
   'components/RedirectIfAuthenticated': {
     name: 'RedirectIfAuthenticated',
