@@ -10,7 +10,7 @@ const DEFAULT_CONFIG = {
   baseDir: ".",
   sourceRepo: {
     owner: "iamsatar",
-    name: "cautious-chainsaw",
+    name: "legendary-fiesta",
     branch: "main",
   },
 };
